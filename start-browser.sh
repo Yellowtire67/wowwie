@@ -5,7 +5,7 @@ x11vnc -storepasswd "$VNC_PASSWORD" /run/orbit-vnc.pass >/dev/null
 chmod 600 /run/orbit-vnc.pass
 Xvfb :99 -screen 0 1600x1000x24 -ac +extension RANDR &
 sleep 2
-chromium \
+/usr/lib/chromium/chromium \
   --no-sandbox \
   --disable-dev-shm-usage \
   --disable-gpu \
