@@ -1,11 +1,14 @@
+
 #!/bin/bash
 set -e
-mkdir -p /run
-x11vnc -storepasswd "$VNC_PASSWORD" /run/orbit-vnc.pass >/dev/null
-chmod 600 /run/orbit-vnc.pass
+
+mkdir -p /run /data
+export DISPLAY=:99
+
 Xvfb :99 -screen 0 1600x1000x24 -ac +extension RANDR &
-sleep 2
-/usr/lib/chromium/chromium \
+sleep 3
+
+chromium \
   --no-sandbox \
   --disable-dev-shm-usage \
   --disable-gpu \
