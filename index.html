@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Orbit — Virtual Browser</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">◉</span><span>ORBIT</span><small>VIRTUAL BROWSER</small></div>
+    <div class="status"><i></i><span id="status">Connecting…</span></div>
+  </header>
+  <main>
+    <section class="toolbar">
+      <div class="hint"><b>Remote Chromium</b><span>Real browser running in an isolated desktop</span></div>
+      <button id="fullscreen" class="secondary">⛶ Fullscreen</button>
+      <button id="locationToggle" class="secondary">◎ Location</button>
+    </section>
+    <section id="browserFrame" class="browser-frame">
+      <iframe id="remote" title="Remote Chromium browser"
+        src="/novnc/vnc.html?autoconnect=true&resize=scale&show_dot=true&quality=8&compression=2"
+        allow="clipboard-read; clipboard-write; fullscreen"></iframe>
+    </section>
+    <section id="locationPanel" class="location-panel" hidden>
+      <div class="panel-head"><div><b>Browser location</b><p>Changes the location shared through browser geolocation. It does not change your public IP.</p></div><button id="closeLocation" class="icon-btn">×</button></div>
+      <div class="fields">
+        <label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" placeholder="e.g. 40.7128"></label>
+        <label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" placeholder="-74.0060"></label>
+      </div>
+      <div class="actions"><button id="applyLocation">Apply location</button><button id="clearLocation" class="secondary">Clear override</button></div>
+      <p id="locationMessage" class="message" aria-live="polite"></p>
+    </section>
+    <section class="vpn-panel">
+      <div><b>VPN connection</b><p>VPN is not active. Orbit does not bundle an unverified free VPN. A supported VPN provider/configuration must be connected before this can show a protected connection.</p></div>
+      <span class="vpn-state">NOT CONNECTED</span>
+    </section>
+    <footer>Orbit runs a real Chromium desktop remotely. Use only websites and accounts you are authorized to access.</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
