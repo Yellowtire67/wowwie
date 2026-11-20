@@ -1,0 +1,15 @@
+services:
+  orbit:
+    build: .
+    container_name: orbit-browser
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ORBIT_USER: "${ORBIT_USER:-orbit}"
+      ORBIT_PASSWORD: "${ORBIT_PASSWORD:?Set ORBIT_PASSWORD in .env}"
+      VNC_PASSWORD: "${VNC_PASSWORD:?Set VNC_PASSWORD in .env}"
+      TZ: "${TZ:-UTC}"
+    shm_size: "1gb"
+    security_opt:
+      - no-new-privileges:true
