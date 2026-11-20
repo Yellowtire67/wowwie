@@ -3,7 +3,6 @@ set -e
 mkdir -p /run
 x11vnc -storepasswd "$VNC_PASSWORD" /run/orbit-vnc.pass >/dev/null
 chmod 600 /run/orbit-vnc.pass
-htpasswd -bc /etc/nginx/.htpasswd "$ORBIT_USER" "$ORBIT_PASSWORD"
 Xvfb :99 -screen 0 1600x1000x24 -ac +extension RANDR &
 sleep 2
 chromium \
