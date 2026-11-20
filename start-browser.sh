@@ -1,14 +1,19 @@
-
 #!/bin/bash
 set -e
 
 mkdir -p /run /data
 export DISPLAY=:99
 
-Xvfb :99 -screen 0 1600x1000x24 -ac +extension RANDR &
-sleep 3
+# Create the VNC password file
+x11vnc -storepasswd "$VNC_PASSWORD" /run/orbit-vnc.pass
+chmod 600 /run/orbit-vnc.pass
 
-chromium \
+# Wait for the virtual display to start
+until [ -S /tmp/.X11-unix/X99 ]; do
+  sleep 1
+done
+
+exec chromium \
   --no-sandbox \
   --disable-dev-shm-usage \
   --disable-gpu \
